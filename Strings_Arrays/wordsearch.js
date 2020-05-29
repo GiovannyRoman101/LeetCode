@@ -36,9 +36,9 @@ function search(board,row,col,word){
 }
 let board =
 [
-  ['A','B','C','E'],
-  ['S','F','C','S'],
-  ['A','D','E','E']
+	['A','B','C','E'],
+	['S','F','C','S'],
+	['A','D','E','E']
 ]
 
 console.log(exist(board,'SEE'))

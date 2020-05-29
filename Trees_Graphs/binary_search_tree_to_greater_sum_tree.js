@@ -34,4 +34,4 @@ root.right.left = new TreeNode(5)
 root.right.right = new TreeNode(7)
 root.right.right.right = new TreeNode(8)
 
-bstToGst(root)
+console.log(bstToGst(root))

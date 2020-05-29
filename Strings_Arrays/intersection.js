@@ -30,4 +30,4 @@ let arr4 = [2, 4, 6, 6, 21]
 let arr5 = [1, 2]
 let arr6 = []
 
-console.log(intersection(arr5, arr6))
+console.log(intersection(arr1, arr2))
