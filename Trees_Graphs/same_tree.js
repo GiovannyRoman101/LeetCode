@@ -20,9 +20,12 @@ var isSameTree = function(p, q) {
 		return true
 	} else if(p === null || q === null){
 		return false
+	}else if(p.val !== q.val){
+		return false
 	}
 	return p.val === q.val && isSameTree(p.left,p.left) && isSameTree(p.right,q.right)
 };
+
 
 let tree1 = new TreeNode(1)
 tree1.left = new TreeNode(2)
@@ -46,6 +49,12 @@ let tree3_1 = new TreeNode(1)
 tree3_1.left = new TreeNode(1)
 tree3_1.right = new TreeNode(2)
 
-console.log(isSameTree(tree1,tree1_1))
+let tree4_1 = new TreeNode(0)
+tree4_1.left = new TreeNode(-5)
+
+let tree4_2 = new TreeNode(0)
+tree4_2.left = new TreeNode(-8)
+
+console.log(isSameTree(tree4_1,tree4_2))
 console.log(isSameTree(tree2,tree2_1))
 console.log(isSameTree(tree3,tree3_1))
