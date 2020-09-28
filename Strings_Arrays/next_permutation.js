@@ -8,6 +8,7 @@ var nextPermutation = function(nums) {
 	}else{
 		let largest = 0
 		for(let i =0; i < nums.length; i++){
+			// find the largest number
 			if(nums[largest] < nums[i]){
 				largest = i
 			}
@@ -27,5 +28,5 @@ var nextPermutation = function(nums) {
 let nums = [1,3,2]
 let nums2 = [3,2,1]
 let nums3 = [1,1,5]
-nextPermutation(nums)
-console.log(nums)
+nextPermutation(nums2)
+console.log(nums2)
