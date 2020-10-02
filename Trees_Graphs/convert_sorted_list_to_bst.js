@@ -22,14 +22,35 @@ function TreeNode(val){
 	this.val = val
 	this.left = this.right = null
 }
-// TODO:fix it
 /**
  * @param {ListNode} head
  * @return {TreeNode}
  */
 var sortedListToBST = function(head) {
-	
-};
+	if(head === null){
+		return null
+	}else if(head !== null && head.next === null){
+		return new TreeNode(head.val)
+	}else{
+		let curr = head
+		let fast = head
+		let prev = curr
+		while(fast !== null && fast.next !== null){
+			prev = curr
+			fast = fast.next
+			curr = curr.next
+			if(fast !== null && fast.next !== null){
+				fast = fast.next
+			}
+		}
+		let root = new TreeNode(curr.val)
+		root.right = sortedListToBST(curr.next)
+		prev.next = null
+		root.left = sortedListToBST(head)
+
+		return root
+	}
+}
 
 
 
