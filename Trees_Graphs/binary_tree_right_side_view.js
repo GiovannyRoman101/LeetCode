@@ -17,32 +17,37 @@ function TreeNode(val){
  * @return {number[]}
  */
 var rightSideView = function(root) {
-	let result =[]
+	let result = []
 	if(root === null){
 		return result
 	}
-	result.push(root.val)
-	let curr = root
-	while(curr !== null){
+	let queue = []
+	let children =[]
+	queue.push(root)
+	while(queue.length !== 0){
+		let curr = queue.shift()
+		if(queue.length === 0){
+			result.push(curr.val)
+		}
+		if(curr.left !== null){
+			children.push(curr.left)
+		}
 		if(curr.right !== null){
-			result.push(curr.right.val)
-			curr = curr.right
-		}else if(curr.left !== null){
-			result.push(curr.left.val)
-			curr = curr.left
+			children.push(curr.right)
 		}
-		else{
-			curr = null
+
+		if(queue.length === 0){
+			queue = children
+			children = []
 		}
-		
 	}
 	return result
-};
+}
 
 let tree = new TreeNode(1)
 tree.left  = new TreeNode(2)
 tree.right = new TreeNode(3)
 tree.left.right = new TreeNode(5)
-tree.right.right = new TreeNode(4)
+tree.right.left = new TreeNode(4)
 
 console.log(rightSideView(tree))

@@ -26,6 +26,12 @@ var numDecodings = function(s) {
 	return count
 };
 
+var numDecodings1 = function(s) {
+	let memo = new Map()
+	let count = 0
+	
+}
+
 let input1 = '12'
 let input2 = '226'
 let input3 = '10'

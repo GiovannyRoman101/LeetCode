@@ -10,7 +10,7 @@ function TreeNode(val) {
 	this.val = val
     this.left = this.right = null
 }
-// TODO:
+
 /**
  * @param {number[]} pre
  * @param {number[]} post
@@ -20,10 +20,15 @@ var constructFromPrePost = function(pre, post) {
     if(pre.length === 0 || post.length === 0){
 		return null
 	}
-	let root  = new TreeNode(pre.shift())
-	post.pop()
-	let lpost = post.slice(0,post.indexOf(pre[0])+1)
-	let rpost = post.slice(post.indexOf(pre[0])+1)
+	let root = new TreeNode(pre[0])
+	let lpre = pre.slice(1,post.indexOf(pre[1])+2)
+	let lpost = post.slice(0,post.indexOf(pre[1])+1)
+
+	let rpre = pre.slice(post.indexOf(pre[1])+2,post.length)
+	let rpost = post.slice(post.indexOf(pre[1])+1, post.length-1)
+
+	root.left = constructFromPrePost(lpre,lpost)
+	root.right = constructFromPrePost(rpre,rpost)
 
 	return root
 }

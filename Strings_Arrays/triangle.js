@@ -5,6 +5,7 @@
  * @param {number[][]} triangle
  * @return {number}
  */
+// runtime exceeds
 var minimumTotal = function(triangle) {
 	let path = []
 	if(triangle === null || triangle === undefined){
@@ -28,4 +29,20 @@ var minimumTotal = function(triangle) {
 	return min
 };
 
-console.log(minimumTotal([[-1],[3,2],[-3,1,-1]]))
+var minimumTotal1 = function(triangle){
+
+	for(let i = triangle.length -1; i > 0; i--){
+		let prev = triangle[i-1]
+		let curr = triangle[i]
+		for(let j = 0; j < prev.length; j++){
+			if(curr[j] < curr[j+1]){
+				prev[j] += curr[j]
+			}else{
+				prev[j] += curr[j+1]
+			}
+		}
+	}
+	return triangle[0][0]
+}
+
+console.log(minimumTotal1([[2],[3,4],[6,5,7],[4,1,8,3]]))

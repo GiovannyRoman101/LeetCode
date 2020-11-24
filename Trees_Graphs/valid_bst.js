@@ -16,24 +16,29 @@ function TreeNode(val, left, right) {
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    function isValid (root, low, high) {
-        if (!root) {
-			return true
+	let res = []
+
+	function dfs(node){
+		if(node === null){
+			return
+		}else{
+			if(node.left !== null){
+				dfs(node.left)
+			}
+			res.push(node.val)
+			if(node.right !== null){
+				dfs(node.right)
+			}
 		}
-        if (root.val <= low || root.val >= high) { 
-			return false 
+	}
+	dfs(root)
+	for(let i =1; i < res.length; i++){
+		if(res[i-1] >= res[i]){
+			return false
 		}
-        if (root.left && root.val <= root.left.val ) { 
-			return false 
-		}
-        if (root.right && root.val >= root.right.val ) { 
-			return false 
-		}
-        
-        return isValid(root.left, Math.min(root.val, low), Math.min(root.val, high)) && isValid(root.right, Math.max(root.val, low), Math.max(root.val, high))
-    }
-    return isValid(root, -Infinity, Infinity)
-};
+	}
+	return true
+}
 
 let root = new TreeNode(1)
 // root.left = new TreeNode(1)
