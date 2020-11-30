@@ -23,33 +23,36 @@ var solveNQueens = function(n) {
 	for(let i =0; i < n; i++){
 		grid.push(str)
 	}
-	grid[0].splice(2,1,'Q')
-	return grid
+	placeQueens(0,grid, result)
+	return result
+}
+function placeQueens(row, grid, sol = []){
+	if(row === grid.length){
+		sol.push([...grid])
+	}else{
+		for(let col = 0; col < grid.length; col++){
+			if(isValid(grid,row,col)){
+				grid[row] = grid[row].slice(0,col)+'Q' + grid[row].slice(col+1)
+				placeQueens(row +1, grid, sol)
+				grid[row] = grid[row].slice(0,col)+'.' + grid[row].slice(col+1)
+			}
+		}
+	}
+}
+function isValid(grid, row,col){
+	for(let i = 0; i < row; i++){
+		for(let j = 0; j < grid[row].length;j++){
+			if(j === col && grid[i][j] === 'Q'){
+				return false
+			}
+			let slope = (i-row)/(j-col)
+			if(Math.abs(slope) === 1 && grid[i][j] === 'Q'){
+				return false
+			}
+		}
+	}
+	return true
 }
 
-function isValid(board,row,col){
-	for(let i = 0; i < row ; i++){
-		if(board[i].charAt(col) === 'Q' ){
-			return false
-		}
-	}
-	let temp = board[i]
-	for(let i = 0; i < temp.length; i++){
-		if(i === col ){
-			continue
-		}else if(temp.charAt(i) === 'Q'){
-			return false
-		}
-	}
-	let i = row-1 
-	let j = col-1
-	while(i > 0 && j > 0){
-		if(board[i].charAt(j) === 'Q'){
-			return false
-		}
-	}
-	
-}
 
-
-console.log(solveNQueens(4))
+console.log(solveNQueens(5))
